@@ -29,7 +29,7 @@ jobs:
             any::corrplot
             any::correlation
 
-      - name: run-script
+      - name: script
         run: Rscript script/augmented-design.R
 
       - name: commit files
