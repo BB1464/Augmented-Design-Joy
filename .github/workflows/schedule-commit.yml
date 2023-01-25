@@ -29,6 +29,7 @@ jobs:
             any::corrplot
             any::correlation
             any::rmarkdown
+            any::janitor
 
       - name: script
         run: Rscript -e 'rmarkdown::render("script/augmented-design.Rmd")'
