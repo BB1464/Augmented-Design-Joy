@@ -31,7 +31,7 @@ jobs:
             any::rmarkdown
 
       - name: script
-        run: Rscript -e 'rmarkdown::render("script/augmented-design.R")'
+        run: Rscript -e 'rmarkdown::render("script/augmented-design.Rmd")'
 
 
       - name: commit files
