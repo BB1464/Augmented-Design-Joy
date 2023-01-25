@@ -1,21 +1,26 @@
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
 
-name: 04-run-r-script-with-pkgs
+name: 07-saving-results
+
 jobs:
   run-r-script:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    env: 
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}    
     steps:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@v2
-        with:
+        with: 
           use-public-rspm: true
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: |
+          cache-version: 2
+          packages:
             any::tidyverse
             any::readxl
             any::augmentedRCBD
@@ -23,13 +28,13 @@ jobs:
             any::corrr
             any::corrplot
             any::correlation
-      - name: Execute Script
+      - name: run-script
+        run: Rscript script/augmented_design.R        
+        
+      - name: commit files
         run: |
-          Rscript "script/augmented_design.R"
-      - name: Commit results
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit -m "Results from R script" || echo "No changes to commit"
-          git push origin || echo "No changes to commit"-
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add -A
+          git commit -m "Saving the results" || echo "no changes to commit"
+          git push origin || echo "no changes to commit"
