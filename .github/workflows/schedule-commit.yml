@@ -28,9 +28,10 @@ jobs:
             any::corrr
             any::corrplot
             any::correlation
+            any::rmarkdown
 
       - name: script
-        run: Rscript script/augmented-design.R
+        run: Rscript -e 'rmarkdown::render("script/augmented-design.R")'
 
       - name: commit files
         run: |
