@@ -30,8 +30,7 @@ jobs:
             any::correlation
 
       - name: script
-        run: |
-          source("script/augmented-design.R")
+        run: Rscript script/augmented-design.R
 
       - name: commit files
         run: |
