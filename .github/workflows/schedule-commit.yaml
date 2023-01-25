@@ -1,10 +1,7 @@
 on:
-  schedule:
-    - cron:  "0 9 * * *"
   workflow_dispatch:
 
-name: 01-rscript
-
+name: 04-run-r-script-with-pkgs
 jobs:
   run-r-script:
     runs-on: ubuntu-latest
