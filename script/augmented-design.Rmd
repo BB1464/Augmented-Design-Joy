@@ -36,7 +36,7 @@ farm_qualitative <- farm_qualitative %>%
 ```
 
 ## Fit the Model for days_to_emergence
-```{r,'03'}
+```{r,'75'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$days_to_emergence,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
