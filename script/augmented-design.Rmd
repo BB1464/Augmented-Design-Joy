@@ -341,7 +341,11 @@ report.augmentedRCBD(aug = model1,target = 'leaf_width_market_quantitative.docx'
 ## Fit the Model for leaf_length_width_ratio
 ```{r,'50'}
 market_quantitative_tidy <- market_quantitative %>%
-  mutate(leaf_length_width_ratio=numeric(leaf_length_width_ratio))
+  mutate(leaf_length_width_ratio=as.numeric(leaf_length_width_ratio))
+
+market_quantitative_tidy <- market_quantitative %>%
+  mutate(leaf_length_width_ratio=as.numeric(leaf_length_width_ratio))
+
 
 
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$leaf_length_width_ratio,checks = c('Check 1','Check 2'),method.comp = 'tukey')
