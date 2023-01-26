@@ -9,7 +9,7 @@ output:
     toc: true
 ---
 
-```{r setup, include = FALSE,echo=FALSE,message=FALSE,warning=FALSE}
+```{r setup, include = FALSE,echo=FALSE,message=FALSE,warning=FALSE,error=TRUE}
 library(tidyverse)
 library(readxl)
 library(augmentedRCBD)
@@ -24,47 +24,47 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Farm_quantitative
 
-```{r}
+```{r,'02'}
 farm_qualitative <- read_excel(path = here::here('data/Phenotypic data_Joy updated.xlsx'),sheet = 'Farm_quantitative') %>% janitor::clean_names() %>% 
 drop_na()
 ```
 
 ## Convert all the Characters to Factor
-```{r}
+```{r,'03'}
 farm_qualitative <- farm_qualitative %>% 
   mutate(across(.cols=c(1:4),.fns=factor))
 ```
 
 ## Fit the Model for days_to_emergence
-```{r}
+```{r,'03'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$days_to_emergence,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'04'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'days_to_emergence_farm_quantitative.docx')
 ```
 
 ## Fit the Model for petiole_length
-```{r}
+```{r,'05'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y =farm_qualitative$petiole_length,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'06'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'petiole_length_farm_quantitative.docx')
 ```
 
 ## Fit the Model for number_of_suckers_plant
-```{r}
+```{r,'07'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y =farm_qualitative$number_of_suckers_plant,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'08'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'number_of_suckers_plant_farm_quantitative.docx')
@@ -72,12 +72,12 @@ report.augmentedRCBD(aug = model1,target = 'number_of_suckers_plant_farm_quantit
 
 
 ## Fit the Model for number_of_stolons_plant
-```{r}
+```{r,'09'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y =farm_qualitative$number_of_stolons_plant,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'10'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 
@@ -85,34 +85,34 @@ report.augmentedRCBD(aug = model1,target = 'number_of_stolons_plant_farm_quantit
 ```
 
 ## Fit the Model for leaf_length
-```{r}
+```{r,'11'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$leaf_length,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'12'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'leaf_length_farm_quantitative.docx')
 ```
 
 ## Fit the Model for leaf_width
-```{r}
+```{r,'13'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$leaf_width,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'14'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'leaf_width_farm_quantitative.docx')
 ```
 
 ## Fit the Model for leaf_length_width_ratio
-```{r}
+```{r,'15'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$leaf_length_width_ratio,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'16'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'leaf_length_width_farm_quantitative.docx')
@@ -120,23 +120,23 @@ report.augmentedRCBD(aug = model1,target = 'leaf_length_width_farm_quantitative.
 ```
 
 ## Fit the Model for leaf_area
-```{r}
+```{r,'17'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$leaf_area,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'18'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'leaf_area_farm_quantitative.docx')
 ```
 
 ## Fit the Model for plant_height
-```{r}
+```{r,'19'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$plant_height,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'20'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'plant_height_farm_quantitative.docx')
@@ -144,22 +144,22 @@ report.augmentedRCBD(aug = model1,target = 'plant_height_farm_quantitative.docx'
 
 
 ## Fit the Model for number_of_leaves_per_plant
-```{r}
+```{r,'21'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$number_of_leaves_per_plant,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'22'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'number_of_leaves_per_plant_farm_quantitative.docx')
 ```
 
 ## Fit the Model for plant_span
-```{r}
+```{r,'23'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$plant_span,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'24'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 
@@ -167,44 +167,44 @@ report.augmentedRCBD(aug = model1,target = 'plant_span_farm_quantitative.docx')
 ```
 
 ## Fit the Model for flower_formation
-```{r}
+```{r,'25'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$flower_formation,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'26'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'flower_formation_farm_quantitative.docx')
 ```
 
 ## Fit the Model for number_of_corms_hill
-```{r}
+```{r,'27'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$number_of_corms_hill,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'28'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'number_of_corms_hill_farm_quantitative.docx')
 ```
 
 ## Fit the Model for number_of_cormels_hill
-```{r}
+```{r,'29'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$number_of_cormels_hill,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'30'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'number_of_cormels_hill_farm_quantitative.docx')
 ```
 
 ## Fit the Model for total_weight
-```{r}
+```{r,'31'}
 model1 <- augmentedRCBD(farm_qualitative$block,treatment = farm_qualitative$collections,y=farm_qualitative$total_weight,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'32'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'total_weight_farm_quantitative.docx')
@@ -212,7 +212,7 @@ report.augmentedRCBD(aug = model1,target = 'total_weight_farm_quantitative.docx'
 
 
 ## Correlation Analysis for Farm Qualitative
-```{r}
+```{r,'33'}
 farm_qualitative_corr <- farm_qualitative %>% select(5:19)
 
 corr <- correlation(farm_qualitative_corr,p_adjust = 'bonferroni',method = 'pearson',redundant = TRUE)
@@ -225,11 +225,11 @@ corr
 
 
 ## Colour
-```{r}
+```{r,'34'}
 col<- colorRampPalette(c("red", "white", "blue"))(20)
 ```
 
-```{r}
+```{r,'35'}
 M<-cor(farm_qualitative_corr)
 
 corrplot(corr = M,method = 'circle',type = 'upper',order = 'hclust',tl.col = 'black',col=col)
@@ -238,7 +238,7 @@ corrplot(corr = M,method = 'circle',type = 'upper',order = 'hclust',tl.col = 'bl
 
 
 
-```{r}
+```{r,'36'}
 x <- correlate(farm_qualitative_corr)
 
 #autoplot(x)
@@ -249,34 +249,31 @@ autoplot(x, triangular = "lower")
 ```
 
 ## Save the Plot
-```{r}
+```{r,'37'}
 ggsave(filename = 'farm_quantitative_Corr.png',path = here::here('plot'),width = 10,height = 10,dpi = 300,bg = 'white')
 ```
 
 
 
-
-
-
 ## Farm_quantitative_DM
 
-```{r}
+```{r,'38'}
 farm_quantitative_DM <- read_excel(path = here::here('data/Phenotypic data_Joy updated.xlsx'),sheet = 'Farm_quantitative_DM') %>% janitor::clean_names() %>% drop_na() 
 ```
 
 ## Convert all the Characters to Factor
-```{r}
+```{r,'39'}
 farm_quantitative_tidy <- farm_quantitative_DM %>% 
   mutate(across(.cols=c(1:4),.fns=factor))
 ```
 
 ## Fit the Model for dry matter for Farm Quantitative DM
-```{r}
+```{r,'40'}
 model1 <- augmentedRCBD(farm_quantitative_tidy$block,treatment =farm_quantitative_tidy$collections,y=farm_quantitative_tidy$dry_matter,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'41'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'dry_matter_farm_quantitative_DM.docx')
@@ -285,12 +282,12 @@ report.augmentedRCBD(aug = model1,target = 'dry_matter_farm_quantitative_DM.docx
 
 ## Market_quantitative
 
-```{r}
+```{r,'42'}
 market_quantitative <- read_excel(path = here::here('data/Phenotypic data_Joy updated.xlsx'),sheet = 'Market_quantitative') %>% janitor::clean_names()
 ```
 
 ## Convert all the Characters to Factor
-```{r}
+```{r,'43'}
 market_quantitative_tidy <- market_quantitative |> 
 mutate(across(.cols=c(1:4),.fns=factor))
 
@@ -306,11 +303,11 @@ mutate(across(.cols=c(6:7),.fns=as.numeric))
 ### This is where we are having issues
 
 ## Fit the Model for Plant Height
-```{r}
+```{r,'44'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$plant_height,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'45'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'plant_height_farm_quantitative_DM.docx')
@@ -318,133 +315,135 @@ report.augmentedRCBD(aug = model1,target = 'plant_height_farm_quantitative_DM.do
 
 
 ## Fit the Model for leaf_length
-```{r}
+```{r,'46'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$leaf_length,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'47'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'leaf_length_farm_quantitative_DM.docx')
 
 ```
 ## Fit the Model for leaf_width
-```{r}
+```{r,'48'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$leaf_width,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'49'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 
-report.augmentedRCBD(aug = model1,target = 'leaf_width_farm_quantitative.docx')
+report.augmentedRCBD(aug = model1,target = 'leaf_width_market_quantitative.docx')
 ```
-<!-- ## Fit the Model for leaf_length_width_ratio -->
-<!-- ```{r} -->
-<!-- market_quantitative_tidy <- market_quantitative %>%  -->
-<!--   mutate(leaf_length_width_ratio=numeric(leaf_length_width_ratio)) -->
 
 
-<!-- model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$leaf_length_width_ratio,checks = c('Check 1','Check 2'),method.comp = 'tukey') -->
-<!-- ``` -->
+## Fit the Model for leaf_length_width_ratio
+```{r,'50'}
+market_quantitative_tidy <- market_quantitative %>%
+  mutate(leaf_length_width_ratio=numeric(leaf_length_width_ratio))
+
+
+model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$leaf_length_width_ratio,checks = c('Check 1','Check 2'),method.comp = 'tukey')
+```
 
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'51'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for leaf_area
-```{r}
+```{r,'52'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$leaf_area,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'53'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for plant_span
-```{r}
+```{r,'54'}
 
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$plant_span,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'55'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for number_of_leaves_per_plant
-```{r}
+```{r,'56'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$number_of_leaves_per_plant,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'57'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for number_of_suckers_plant
-```{r}
+```{r,'58'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$number_of_suckers_plant,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'59'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for number_of_stolons_plant
-```{r}
+```{r,'60'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$number_of_stolons_plant,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'61'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for flower_formation
-```{r}
+```{r,'62'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$flower_formation,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'63'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for number_of_corms_hill
-```{r}
+```{r,'64'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$number_of_corms_hill,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'65'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for number_of_cormels_hill
-```{r}
+```{r,'66'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$number_of_cormels_hill,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'67'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for total_weight
-```{r}
+```{r,'68'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$total_weight,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'69'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Fit the Model for dry_matter
-```{r}
+```{r,'70'}
 model1 <- augmentedRCBD(market_quantitative_tidy$block,treatment=market_quantitative_tidy$collections,y=market_quantitative_tidy$dry_matter,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
 ## Descriptive Statistics of the Output
-```{r}
+```{r,'71'}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Market_quantitative_DM
-```{r}
+```{r,'72'}
 market_quantitative_DM <- read_excel(path = here::here('Data/Phenotypic data_Joy.xlsx'),sheet = 'Market_quantitative_DM') %>% janitor::clean_names() 
 ```
 
 ## Convert all the Characters to Factor
-```{r}
+```{r,'73'}
 market_quantitative_DM_tidy <- market_quantitative_DM %>% mutate(across(.cols=c(1:4),.fns=factor))
 ```
 
 ## Fit the Model for dry matter for market quantitative dry matter
 
-```{r}
+```{r,'74'}
 model1 <- augmentedRCBD(market_quantitative_DM_tidy$block,treatment=market_quantitative_DM_tidy$collections,y=market_quantitative_DM_tidy$dry_matter,checks = c('Check 1','Check 2'),method.comp = 'tukey')
 ```
