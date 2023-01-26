@@ -430,7 +430,7 @@ augmentedRCBD::describe.augmentedRCBD(aug = model1)
 ```
 ## Market_quantitative_DM
 ```{r,'72'}
-market_quantitative_DM <- read_excel(path = here::here('Data/Phenotypic data_Joy.xlsx'),sheet = 'Market_quantitative_DM') %>% janitor::clean_names() 
+market_quantitative_DM <- read_excel(path = here::here('data/Phenotypic data_Joy updated.xlsx'),sheet = 'Market_quantitative_DM')%>% janitor::clean_names() 
 ```
 
 ## Convert all the Characters to Factor
