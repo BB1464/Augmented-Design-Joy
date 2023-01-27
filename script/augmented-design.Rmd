@@ -221,7 +221,7 @@ model1 <- augmentedRCBD(market_quantitative_DM_tidy$block,treatment=market_quant
 
 
 ## Descriptive Statistics of the Output
-```{r,'71',error=TRUE}
+```{r,'80',error=TRUE}
 augmentedRCBD::describe.augmentedRCBD(aug = model1)
 
 report.augmentedRCBD(aug = model1,target = 'dry_matter_market_quantitative_DM.docx')
