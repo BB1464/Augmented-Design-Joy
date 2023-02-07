@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # Import the data set into R -----------------------------------------------
-dat1 <- read_excel(path = here::here('Data/Tunde G2 datasets.xlsx'))
+dat1 <- read_excel(path = here::here('data/Tunde G2 datasets.xlsx'))
 ```
 
 # Convert all the Characters to factor ------------------------------------
