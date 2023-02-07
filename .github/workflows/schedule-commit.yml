@@ -23,17 +23,17 @@ jobs:
           packages:
             any::tidyverse
             any::readxl
-            any::augmentedRCBD
-            any::RColorBrewer
-            any::corrr
-            any::corrplot
-            any::correlation
+            any::emmeans
+            any::lme4
+            #any::corrr
+            #any::corrplot
+            #any::correlation
             any::rmarkdown
-            any::janitor
-            any::here
+            #any::janitor
+            #any::here
 
       - name: script
-        run: Rscript -e 'rmarkdown::render("script/augmented-design.Rmd")'
+        run: Rscript -e 'rmarkdown::render("script/heritability.Rmd")'
 
 
       - name: commit files
