@@ -5,7 +5,7 @@ date: "2023-02-07"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,'01'}
 library(agridat)
 library(emmeans)
 library(lme4)
@@ -16,18 +16,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r}
+```{r,'02'}
 # Import the data set into R -----------------------------------------------
 dat1 <- read_excel(path = here::here('data/Tunde G2 datasets.xlsx'))
 ```
 
 # Convert all the Characters to factor ------------------------------------
-```{r}
+```{r,'03'}
 dat1 <- dat1 %>%
   mutate(across(.cols = c(1:4),.fns = factor))
 ```
 # Drop all the missing data -----------------------------------------------
-```{r}
+```{r,'04'}
 dat1 <- dat1 %>%
   drop_na()
 ```
@@ -37,7 +37,7 @@ dat1 <- dat1 %>%
 # fit model ---------------------------------------------------------------
 # random genotype effect
 
-```{r}
+```{r,'05'}
 g_ran <- lmer(data    = dat1,
               formula = `tuber weight` ~ rep_number + (1|accession_name) + (1|rep_number:block_number))
 
@@ -45,7 +45,7 @@ g_ran <- lmer(data    = dat1,
 
 # fixed genotype effect
 
-```{r}
+```{r,'06'}
 g_fix <- lmer(data    = dat1,
               formula = `tuber weight` ~ rep_number +    accession_name  + (1|rep_number:block_number))
 ```
@@ -53,7 +53,7 @@ g_fix <- lmer(data    = dat1,
 # handle model estimates --------------------------------------------------
 # genotypic variance component
 
-```{r}
+```{r,'07'}
 vc.g <- g_ran %>%
   VarCorr %>%
   as_tibble %>%
@@ -64,7 +64,7 @@ vc.g
 ```
 # mean variance of a difference between genotypes
 
-```{r}
+```{r,'08'}
 vdBLUE.avg <- g_fix %>%
   emmeans(pairwise ~ accession_name) %>%
   pluck("contrasts") %>%
@@ -77,7 +77,7 @@ vdBLUE.avg
 ```
 
 # H2 Piepho ---------------------------------------------------------------
-```{r}
+```{r,'09'}
 H2.p <- vc.g/(vc.g + vdBLUE.avg/2)
 H2.p
 ```
@@ -87,7 +87,7 @@ H2.p
 # fit model ---------------------------------------------------------------
 # random genotype effect
 
-```{r}
+```{r,'10'}
 g_ran <- lmer(data    = dat1,
               formula = `tuber yield` ~ rep_number + (1|accession_name) + (1|rep_number:block_number))
 
@@ -95,7 +95,7 @@ g_ran <- lmer(data    = dat1,
 
 # fixed genotype effect
 
-```{r}
+```{r,'11'}
 g_fix <- lmer(data    = dat1,
               formula = `tuber yield` ~ rep_number +    accession_name  + (1|rep_number:block_number))
 ```
@@ -103,7 +103,7 @@ g_fix <- lmer(data    = dat1,
 # handle model estimates --------------------------------------------------
 # genotypic variance component
 
-```{r}
+```{r,'12'}
 vc.g <- g_ran %>%
   VarCorr %>%
   as_tibble %>%
@@ -114,7 +114,7 @@ vc.g
 ```
 # mean variance of a difference between genotypes
 
-```{r}
+```{r,'13'}
 vdBLUE.avg <- g_fix %>%
   emmeans(pairwise ~ accession_name) %>%
   pluck("contrasts") %>%
@@ -127,7 +127,7 @@ vdBLUE.avg
 ```
 
 # H2 Piepho ---------------------------------------------------------------
-```{r}
+```{r,'14'}
 H2.p <- vc.g/(vc.g + vdBLUE.avg/2)
 H2.p
 ```
@@ -137,7 +137,7 @@ H2.p
 # fit model ---------------------------------------------------------------
 # random genotype effect
 
-```{r}
+```{r,'15'}
 g_ran <- lmer(data    = dat1,
               formula = `Average tuber weight` ~ rep_number + (1|accession_name) + (1|rep_number:block_number))
 
@@ -145,7 +145,7 @@ g_ran <- lmer(data    = dat1,
 
 # fixed genotype effect
 
-```{r}
+```{r,'16'}
 g_fix <- lmer(data    = dat1,
               formula = `Average tuber weight` ~ rep_number +    accession_name  + (1|rep_number:block_number))
 ```
@@ -153,7 +153,7 @@ g_fix <- lmer(data    = dat1,
 # handle model estimates --------------------------------------------------
 # genotypic variance component
 
-```{r}
+```{r,'17'}
 vc.g <- g_ran %>%
   VarCorr %>%
   as_tibble %>%
@@ -164,7 +164,7 @@ vc.g
 ```
 # mean variance of a difference between genotypes
 
-```{r}
+```{r,'18'}
 vdBLUE.avg <- g_fix %>%
   emmeans(pairwise ~ accession_name) %>%
   pluck("contrasts") %>%
@@ -177,7 +177,7 @@ vdBLUE.avg
 ```
 
 # H2 Piepho ---------------------------------------------------------------
-```{r}
+```{r,'19'}
 H2.p <- vc.g/(vc.g + vdBLUE.avg/2)
 H2.p
 ```
@@ -187,7 +187,7 @@ H2.p
 # fit model ---------------------------------------------------------------
 # random genotype effect
 
-```{r}
+```{r,'20'}
 g_ran <- lmer(data    = dat1,
               formula = `Tuber lengt` ~ rep_number + (1|accession_name) + (1|rep_number:block_number))
 
@@ -195,7 +195,7 @@ g_ran <- lmer(data    = dat1,
 
 # fixed genotype effect
 
-```{r}
+```{r,'21'}
 g_fix <- lmer(data    = dat1,
               formula = `Tuber lengt` ~ rep_number +    accession_name  + (1|rep_number:block_number))
 ```
@@ -203,7 +203,7 @@ g_fix <- lmer(data    = dat1,
 # handle model estimates --------------------------------------------------
 # genotypic variance component
 
-```{r}
+```{r,'22'}
 vc.g <- g_ran %>%
   VarCorr %>%
   as_tibble %>%
@@ -214,7 +214,7 @@ vc.g
 ```
 # mean variance of a difference between genotypes
 
-```{r}
+```{r,'23'}
 vdBLUE.avg <- g_fix %>%
   emmeans(pairwise ~ accession_name) %>%
   pluck("contrasts") %>%
@@ -227,7 +227,7 @@ vdBLUE.avg
 ```
 
 # H2 Piepho ---------------------------------------------------------------
-```{r}
+```{r,'24'}
 H2.p <- vc.g/(vc.g + vdBLUE.avg/2)
 H2.p
 ```
@@ -236,23 +236,23 @@ H2.p
 # fit model ---------------------------------------------------------------
 # random genotype effect
 
-```{r}
+```{r,'25'}
 g_ran <- lmer(data    = dat1,
-              formula = `rAUDPCYMV` ~ rep_number + (1|accession_name) + (1|rep_number:block_number))
+              formula = rAUDPCYMV ~ rep_number + (1|accession_name) + (1|rep_number:block_number))
 
 ```
 
 # fixed genotype effect
 
-```{r}
+```{r,'26'}
 g_fix <- lmer(data    = dat1,
-              formula = `rAUDPCYMV` ~ rep_number +    accession_name  + (1|rep_number:block_number))
+              formula = rAUDPCYMV ~ rep_number +    accession_name  + (1|rep_number:block_number))
 ```
 
 # handle model estimates --------------------------------------------------
 # genotypic variance component
 
-```{r}
+```{r,'27'}
 vc.g <- g_ran %>%
   VarCorr %>%
   as_tibble %>%
@@ -263,7 +263,7 @@ vc.g
 ```
 # mean variance of a difference between genotypes
 
-```{r}
+```{r,'28'}
 vdBLUE.avg <- g_fix %>%
   emmeans(pairwise ~ accession_name) %>%
   pluck("contrasts") %>%
@@ -276,7 +276,7 @@ vdBLUE.avg
 ```
 
 # H2 Piepho ---------------------------------------------------------------
-```{r}
+```{r,'29'}
 H2.p <- vc.g/(vc.g + vdBLUE.avg/2)
 H2.p
 ```
