@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 dat1 <- read_excel(path = here::here('data/Tunde G2 datasets.xlsx'))
 ```
 
+
 # Convert all the Characters to factor ------------------------------------
 ```{r,'03',cache=TRUE,dependson='dat1'}
 dat1 <- dat1 %>%
@@ -58,7 +59,7 @@ vc.g <- g_ran %>%
   VarCorr %>%
   as_tibble %>%
   filter(grp=="accession_name") %>%
-  pull(vcov) # 0.1429021
+  pull(vcov) 
 
 vc.g
 ```
