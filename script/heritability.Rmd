@@ -33,6 +33,14 @@ dat1 <- dat1 %>%
   drop_na()
 ```
 
+## Split the data set down
+
+```{r}
+dat1 <- dat1 %>% 
+  slice_head(n = 70)
+```
+
+
 ## Tuber Weight
 
 # fit model ---------------------------------------------------------------
