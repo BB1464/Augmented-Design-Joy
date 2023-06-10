@@ -25,7 +25,7 @@ jobs:
             any::readxl
             any::emmeans
             any::lme4
-            any::rmarkdown
+            any::quarto
             any::lmerTest
             any::here
             any::skimr
