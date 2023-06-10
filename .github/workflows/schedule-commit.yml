@@ -34,7 +34,7 @@ jobs:
             any::knitr
 
       - name: script
-        run: Rscript -e 'quarto render("script/UfoumaAnova.Rmd")'
+        run: Rscript -e 'rmarkdown::render("script/UfoumaAnova.Rmd")'
 
 
       - name: commit files
