@@ -32,6 +32,8 @@ jobs:
             any::VIM
             any::mice
             any::knitr
+            any::janitor
+            any::here
 
       - name: script
         run: Rscript -e 'rmarkdown::render("script/UfoumaAnova.Rmd")'
