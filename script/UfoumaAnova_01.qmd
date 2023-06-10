@@ -1,0 +1,88 @@
+---
+title: "Analysis of Variance"
+author: "Oluwafemi Oyedele"
+format: html
+editor: visual
+code-fold: true
+code-link: true
+---
+
+# Load the Required Packages
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(lmerTest)
+library(emmeans)
+library(skimr)
+library(mice)
+library(VIM)
+```
+
+# Load the dataset
+
+```{r}
+#| warning: false
+#| message: false
+dat <- read_csv(here::here('Data/Ufouma.csv')) %>%  
+  janitor::clean_names()
+```
+
+# Missing data imputation using boastrap technique
+
+```{r}
+#| message: false
+#| warning: false
+summary(dat)
+md.pattern(dat)#This display the missing data pattern
+
+mice_plot<-aggr(dat,col=c('navyblue','yellow'),numbers=TRUE,sortVars=TRUE,labels=names(dat),cex.axis=.7,gap=3,ylab=c('Missing data','Pattern'))
+
+
+#Missing data imputation
+imputed_Data<-mice(dat,m=5,maxit=50,method='pmm', seed = 500)
+summary(imputed_Data)
+
+#Check imputed values
+imputed_Data$imp$ff
+imputed_Data$imp$x50f
+
+#Get complete data (2nd out of 5)
+dat_clean<-complete(imputed_Data,1)
+
+
+```
+
+# Analysis of Variance using alpha lattice Design
+
+```{r}
+#| message: false
+#| warning: false
+
+for (i in 7:ncol(dat_clean)) {
+print(paste('---',names(dat_clean[i]),'---'))
+model <- lmer(dat_clean[[i]]~acc+location+acc:location+(1|location:rep)+
+       (1|location:rep:blk),data=dat_clean)
+
+#print(model)
+
+# Anova result
+ 
+print(anova(object = model,type = 3,ddf = 'Kenward-Roger'))
+ 
+# Post hoc test for Accession
+
+print(emmeans(object = model,pairwise~acc))
+ 
+# Post hoc test for Location
+
+print(emmeans(object = model,pairwise~location))
+ 
+# Post Hoc Test for Interraction Term
+
+print(emmeans(model, specs = pairwise ~ acc|location))
+ 
+ }
+
+```
