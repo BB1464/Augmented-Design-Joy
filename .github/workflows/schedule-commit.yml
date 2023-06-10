@@ -32,6 +32,7 @@ jobs:
             any::skimr
             any::VIM
             any::mice
+            any::knitr
 
       - name: script
         run: Rscript -e 'quarto::render("script/UfoumaAnova_01.qmd")'
