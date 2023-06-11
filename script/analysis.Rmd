@@ -18,14 +18,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Load the dataset
-```{r}
+```{r,echo=FALSE,warning=FALSE}
 dat <- read_csv(here::here('data/Ufouma.csv')) %>%  
   janitor::clean_names()
 ```
 
 # Missing data imputation using boastrap technique
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,include=FALSE}
 summary(dat)
 md.pattern(dat)#This display the missing data pattern
 
@@ -47,7 +47,7 @@ dat_clean<-complete(imputed_Data,1)
 ```
 
 # Analysis of Variance using alpha lattice Design
-```{r}
+```{r,echo=FALSE,warning=FALSE}
 for (i in 7:ncol(dat_clean)) {
 print(paste('---',names(dat_clean[i]),'---'))
 model <- lmer(dat_clean[[i]]~acc+location+acc:location+(1|location:rep)+
