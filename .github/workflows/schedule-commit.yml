@@ -36,7 +36,7 @@ jobs:
             any::here
 
       - name: script
-        run: Rscript -e 'rmarkdown::render("script/UfoumaAnova.Rmd")'
+        run: Rscript -e 'rmarkdown::render("script/analysis.Rmd")'
 
 
       - name: commit files
